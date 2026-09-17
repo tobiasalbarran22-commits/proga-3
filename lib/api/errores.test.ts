@@ -37,6 +37,10 @@ describe("errorDesdeRespuesta", () => {
   it("ignora códigos que el frontend no conoce", () => {
     expect(errorDesdeRespuesta(500, { code: "ALGO_RARO" }).codigo).toBe("DESCONOCIDO");
   });
+
+  it("en /login un 401 es credenciales inválidas, no sesión vencida", () => {
+    expect(errorDesdeRespuesta(401, {}, "/login").codigo).toBe("CREDENCIALES_INVALIDAS");
+  });
 });
 
 describe("mensajeParaUsuario", () => {

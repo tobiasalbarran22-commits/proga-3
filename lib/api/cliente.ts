@@ -92,6 +92,6 @@ export async function pedir(ruta: string, opciones: Opciones = {}): Promise<unkn
   }
 
   const cuerpo: unknown = await respuesta.json().catch(() => null);
-  if (!respuesta.ok) throw errorDesdeRespuesta(respuesta.status, cuerpo);
+  if (!respuesta.ok) throw errorDesdeRespuesta(respuesta.status, cuerpo, ruta);
   return cuerpo;
 }

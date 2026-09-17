@@ -77,8 +77,13 @@ export function mensajeParaUsuario(error: unknown): string {
   return MENSAJES.DESCONOCIDO;
 }
 
-function codigoPorEstado(estado: number): CodigoError {
-  if (estado === 401) return "NO_AUTENTICADO";
+/**
+ * Un 401 significa cosas distintas según la ruta: en /login es "las
+ * credenciales están mal" (todavía no hay sesión que pueda haber vencido),
+ * en cualquier otro lado es "la sesión venció".
+ */
+function codigoPorEstado(estado: number, ruta?: string): CodigoError {
+  if (estado === 401) return ruta === "/login" ? "CREDENCIALES_INVALIDAS" : "NO_AUTENTICADO";
   if (estado === 403) return "SIN_PERMISO";
   if (estado === 404) return "NO_ENCONTRADO";
   if (estado === 422) return "DATOS_INVALIDOS";
@@ -104,10 +109,10 @@ export function extraerDetalle(cuerpo: unknown): string {
   return "";
 }
 
-/** Convierte una respuesta HTTP fallida en un ApiError. */
-export function errorDesdeRespuesta(estado: number, cuerpo: unknown): ApiError {
+/** Convierte una respuesta HTTP fallida en un ApiError. `ruta` es la que se llamó (ver codigoPorEstado). */
+export function errorDesdeRespuesta(estado: number, cuerpo: unknown, ruta?: string): ApiError {
   const codigoRecibido =
     typeof cuerpo === "object" && cuerpo !== null && "code" in cuerpo ? String(cuerpo.code) : "";
-  const codigo = esCodigoDelBackend(codigoRecibido) ? codigoRecibido : codigoPorEstado(estado);
+  const codigo = esCodigoDelBackend(codigoRecibido) ? codigoRecibido : codigoPorEstado(estado, ruta);
   return new ApiError(estado, codigo, extraerDetalle(cuerpo) || MENSAJES[codigo]);
 }
