@@ -1,0 +1,25 @@
+# dependencias
+/node_modules
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# tests
+/coverage
+
+# variables de entorno locales (las de .env.development sí se versionan: no tienen secretos)
+.env*.local
+.env.production
+
+# sistema
+.DS_Store
+Thumbs.db
+npm-debug.log*
+
+# herramientas de quien programa, no son del proyecto
+/.claude/
+/AGENTS.md
+/CLAUDE.md

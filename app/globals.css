@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+/*
+ * Tokens de diseño de laburAR.
+ * Son la ÚNICA fuente de colores del proyecto: en los componentes se usan
+ * por nombre (bg-bordo, text-tinta-suave…), nunca como hex.
+ * Todos los colores de texto cumplen contraste AA (4.5:1) sobre fondo y fondo-suave.
+ */
+@theme {
+  --color-bordo: #7a0929;
+  --color-bordo-oscuro: #5c061f;
+  --color-bordo-claro: #f7e9ed;
+
+  --color-tinta: #1f1b1c;
+  --color-tinta-suave: #4f4749;
+  --color-tinta-tenue: #675e61;
+
+  --color-fondo: #ffffff;
+  --color-fondo-suave: #faf6f7;
+  --color-linea: #e2dadc;
+  --color-linea-fuerte: #b9aeb1;
+
+  --color-exito: #1f6b37;
+  --color-exito-claro: #e8f3eb;
+  --color-error: #a3162f;
+  --color-error-claro: #fbe9ec;
+  --color-aviso: #7a4a00;
+  --color-aviso-claro: #fbf0de;
+
+  --font-sans:
+    "Inter Variable", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-fondo text-tinta antialiased;
+  }
+
+  /* Foco visible y consistente para cualquier elemento interactivo. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-bordo;
+  }
+}
