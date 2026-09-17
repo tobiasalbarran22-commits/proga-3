@@ -29,7 +29,7 @@ function usuario(
     email,
     password: CONTRASENA_DEMO,
     tipo_usuario: tipo,
-    estado_cuenta: verificado ? "ACTIVA" : "PENDIENTE_VERIFICACION",
+    estado_cuenta: verificado ? "ACTIVA" : "PENDIENTE",
     email_verificado: verificado,
   };
 }

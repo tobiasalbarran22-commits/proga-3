@@ -11,12 +11,7 @@
 export const TIPOS_USUARIO = ["TRABAJADOR", "EMPRESA", "ADMINISTRADOR"] as const;
 export type TipoUsuario = (typeof TIPOS_USUARIO)[number];
 
-export const ESTADOS_CUENTA = [
-  "ACTIVA",
-  "SUSPENDIDA",
-  "PENDIENTE_VERIFICACION",
-  "ELIMINADA",
-] as const;
+export const ESTADOS_CUENTA = ["ACTIVA", "SUSPENDIDA", "PENDIENTE", "ELIMINADA"] as const;
 export type EstadoCuenta = (typeof ESTADOS_CUENTA)[number];
 
 export const MODALIDADES = ["PRESENCIAL", "HIBRIDA", "REMOTA", "INDIFERENTE"] as const;

@@ -80,7 +80,7 @@ export const rutasAuth: Ruta[] = [
         email: String(datos.email),
         password: String(datos.password),
         tipo_usuario: esEmpresa ? "EMPRESA" : "TRABAJADOR",
-        estado_cuenta: "PENDIENTE_VERIFICACION",
+        estado_cuenta: "PENDIENTE",
         email_verificado: false,
       };
       db.usuarios.push(usuario);
